@@ -1,0 +1,193 @@
+<div class="Container">
+  <div   class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2" style="margin-bottom: 20%;" >
+    <form [formGroup]="signupForm" (ngSubmit)="openDialog()" class="main" >
+      <div  class="form-group" formGroupName="PersonalInfo">
+        <div class="form-group">
+          <!-- Name -->
+          <label for="username">Username</label>
+          <input formControlName="username"
+            id="username"
+            type="text"
+            class="form-control"
+          />
+          <!--   Name Validation -->
+          <label  *ngIf="userName?.touched && userName?.invalid"    class="alert alert-danger ">
+              <label *ngIf="userName!.errors?.['required'] "class="text-danger">Username is required</label>
+              <label *ngIf="userName!.errors?.['pattern'] "class="text-danger">Username Should be Sting Only </label>
+              <label *ngIf="userName!.errors?.['minlength']"class="text-danger">Username Minimum length Must be
+                   {{userName!.errors?.['minlength'].requiredLength}} Characters
+                </label>
+                <label *ngIf="userName!.errors?.['maxlength']"class="text-danger" >Username Max length Must be
+                  {{userName!.errors?.['maxlength'].requiredLength}} Characters
+               </label>
+              </label>
+        </div>
+      
+            <!-- Email -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                formControlName="email"
+                  type="text"
+                  id="email"
+                  class="form-control">
+              <!-- Validation Email-->
+              <div *ngIf="Email?.touched && Email?.invalid" class="alert alert-danger">
+                <label *ngIf="Email?.errors?.['required']"  class="text-danger">Email is required  </label>
+                <label *ngIf="Email?.errors?.['email']"  class="text-danger"> Invalid email form </label>
+              </div>
+            </div>
+      </div>
+    
+      <div class="form-group" formGroupName = "passwordGroup" >
+        <!-- password -->
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          id="password"
+          type="text"
+          class="form-control"
+        />
+        <!-- Validation Password -->
+        <div *ngIf="Password?.touched && Password?.invalid" class="alert alert-danger">
+    
+      <label [ngClass]="Password?.errors?.['required'] || Password?.errors?.['atLeastOneNumber'] ? 'text-danger' : 'text-success' " >
+      <i class="material-icons"  > {{Password?.errors?.['required'] || Password?.errors?.['atLeastOneNumber'] ? 'cancel' :'check_circle' }} </i>
+      At Least One Number  </label>
+    
+      <label [ngClass]="Password?.errors?.['required'] || Password?.errors?.['hasCapitalCase'] ? 'text-danger' : 'text-success' " >
+        <i class="material-icons"  > {{Password?.errors?.['required'] || Password?.errors?.['hasCapitalCase'] ? 'cancel' :'check_circle' }} </i>
+        Has Capital Letter  </label>
+    
+        <label [ngClass]="Password?.errors?.['required'] || Password?.errors?.['minLength'] ? 'text-danger' : 'text-success' " >
+          <i class="material-icons"  > {{Password?.errors?.['required'] || Password?.errors?.['minLength'] ? 'cancel' :'check_circle' }} </i>
+          Minimum 8 character  </label>
+    
+          <label [ngClass]="Password?.errors?.['required'] || Password?.errors?.['maxLength'] ? 'text-danger' : 'text-success' " >
+            <i class="material-icons"  > {{Password?.errors?.['required'] || Password?.errors?.['maxLength'] ? 'cancel' :'check_circle' }} </i>
+            Maximum 20 character  </label>
+    
+            <label [ngClass]="Password?.errors?.['required'] || Password?.errors?.['containSpace'] ? 'text-danger' : 'text-success' " >
+              <i class="material-icons"  > {{Password?.errors?.['required'] || Password?.errors?.['containSpace'] ? 'cancel' :'check_circle' }} </i>
+            Cannot Contain Space  </label>
+     </div> 
+    
+        <!-- confirm Password -->
+        <label for="ConfirmationPassword">Confirm Password</label>
+        <input
+          formControlName="confirmation-password"
+          id="ConfirmationPassword"
+          type="text"
+          class="form-control"
+        />
+        <div *ngIf="confirmationPassword?.touched && confirmationPassword?.invalid" class="alert alert-danger">
+          <label *ngIf="confirmationPassword?.errors?.['required']"  class="text-danger"> Confirmation Password is required </label>
+          <label *ngIf="confirmationPassword?.errors?.['isMatch']"  class="text-danger"> Miss Match your password  </label>
+          
+         </div> 
+        </div>
+    
+    
+        
+         
+    
+    <div class="form-group" formGroupName="hasMilitaryStatus">
+      <!-- gender -->
+    <mat-radio-group   formControlName="gender"  (change)="notMilitarStatus($event)" type="mat-radio-group"   >
+      <mat-radio-button  style="font-size: larger;" value="male"> Male</mat-radio-button>
+      <mat-radio-button style="font-size: larger;" value="female"  > Female</mat-radio-button>
+    </mat-radio-group>
+     <br> <!--Validation gender -->
+     <mat-error *ngIf="Gender?.invalid && Gender?.touched" class="alert alert-danger" >
+      <mat-error *ngIf="Gender?.errors?.['required']" > Gender is required  </mat-error>
+    </mat-error>
+    <!-- MilitaryStatus -->
+    <div *ngIf="Gender?.value == 'male' " class="form-group" >
+      <label >MilitaryStatus</label>  
+      <select  formControlName ="militaryStatus" class="form-control" >
+        <!-- Validation MilitaryStatus  -->
+        <option value="" selected disabled hidden>Choose here</option>
+       <option  *ngFor="let mStatus of MilitaryStatuss" [value]="mStatus" > {{mStatus}} </option>  
+      </select>
+      <div *ngIf="  MilitarStatus?.invalid" class="alert alert-danger"> 
+        <label *ngIf=" MilitarStatus?.errors?.['isVaildMilitary']"  class="text-danger">   required militaryStatus    </label>
+       </div>
+      </div>
+      <!-- phoneNumber -->
+      <label for="PhoneNubmer"  >Phone Number </label>
+      <input formControlName="phone-number"
+           id="ConfirmationPassword"
+            type="text"
+        class="form-control"/>
+        <!-- Validation phoneNumber -->
+        <div *ngIf="phoneNumber?.touched && phoneNumber?.errors?.['pattern']" class="alert alert-danger"  > 
+        <label  class="text-danger"> Phone Number Must be Numbers Only </label>  
+       </div> 
+       
+    </div>
+    
+      <div class="form-group" formGroupName="LivingPlace">
+        <div >    
+          <!-- Countrys -->
+          <label >Countrys</label>  
+          <select class="form-control" formControlName ="country"  [(ngModel)]="selectedCountry" (change)="reqCounty(selectedCountry)">
+            <option value="Default" >Default</option>
+           <option  *ngFor="let country of countryArray" [value]="country" > {{country}} </option>  
+          </select>
+        </div>
+      
+    
+        <!-- Cities -->
+        <div  *ngIf="(selectedCountry !== 'Default') "   >
+          <label >Cities Area</label>  
+          <select  class="form-control"  formControlName ="citys"  >
+            <option value=""selected disabled hidden></option>
+           <option  *ngFor="let city of citiesArray |CitiesFilter: selectedCountry" [value]="city" > {{city}} </option>  
+          </select>
+        </div>
+      <div  *ngIf=" Citys?.invalid && Citys?.touched">        
+        <div *ngIf=" Citys!.errors?.['required'] " class="alert alert-danger">
+          <label  class="text-danger"> u must to enter a city  </label>   
+        </div>
+      </div>
+        <br> 
+  
+         <!-- Date of Birth : datePicker -->
+          <label for="start">Start date:</label>
+         <input type="date" class="form-control" formControlName="datepicker"
+                value="2018-07-22"
+                min="2018-01-01" max="2060-12-31">
+                <div *ngIf="DatePicker?.invalid && DatePicker?.touched && DatePicker?.errors?.['required']" class="alert alert-danger" >
+                 <label for=""> requirerd Date</label>
+              </div> 
+
+      </div>
+    
+    
+     
+    <!-- {{signupForm.value|json}} -->
+    
+      <button id="submit"class="form-control" [disabled]="!signupForm.valid" type="cancel" style=" font-weight: 500; background-color: rgb(40, 75, 203); color: rgb(255, 255, 255); font-size: larger " >Submit</button>
+     </form>
+    
+  </div>
+
+</div>
+
+
+
+
+<!-- 
+     <mat-form-field  class="datePickerClass" >
+          <mat-label>Choose a date</mat-label>
+          <input  formControlName="datepicker" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+          <mat-hint style="font-weight: bold;"> MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-error *ngIf="DatePicker?.invalid && DatePicker?.touched && DatePicker?.errors?.['required']" >   </mat-error> 
+        <mat-error *ngIf="signupForm?.reset && DatePicker?.touched" >   </mat-error>
+        <div *ngIf="signupForm.reset">
+        <div *ngIf=" DatePicker?.markAsDirty"></div> 
+        </div> 
+     -->

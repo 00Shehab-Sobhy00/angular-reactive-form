@@ -1,0 +1,94 @@
+
+.Container{
+  position: relative;
+  padding-left: 20%;  
+  padding-right:20%;
+  margin: 2%;
+}
+
+/* Style for all form groups */
+.form-group {
+  margin-bottom: 2rem;
+  
+}
+
+/* Style for labels */
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+  margin-top: 2%;
+  font-weight: bold;
+  font-size:large;
+  color: #090808da;
+}
+
+/* Style for input fields */
+input,select {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size:1.6rem;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  box-sizing: border-box;
+  color: #555;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+ .mat-mdc-radio-button ~ .mat-mdc-radio-button {
+  margin-left: 16px;
+
+} 
+
+
+/* Style for error messages */
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  margin-top: -0.2rem;
+}
+
+/* Style for submit button */
+
+
+
+/* Style for datepicker */
+.datePickerClass {
+  width: 100%;
+  margin-bottom: 2rem;
+  border-radius: 0.25rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for hint in datepicker */
+.mat-hint {
+  font-weight: bold;
+  color: #aaa;
+}
+
+/* Style for form container */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+
+
+select {
+  font: 400 12px/1.3 sans-serif;
+  line-height: 1;
+  padding:5px;
+  margin: 2px;
+  font-size: 15px;
+
+}
+
